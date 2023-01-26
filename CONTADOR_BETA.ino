@@ -12,30 +12,12 @@
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-
 int melody = NOTE_C4;
 
 int noteDurations = 1;
 
 int TRIG = 27;  // trigger en pin 10
 int ECO = 26;   // echo en pin 9
-
-//const uint8_t ROWS = 4;
-// define numero de columnas
-//const uint8_t COLS = 4;
-// define la distribucion de teclas
-/*  char keys[ROWS][COLS] = {
-  { '1', '2', '3', 'A' },
-  { '4', '5', '6', 'B' },
-  { '7', '8', '9', 'C' },
-  { '*', '0', '#', 'D' }
-};  */
-// pines correspondientes a las filas
-//uint8_t colPins[COLS] = { 15, 4, 0, 2 };  //despues estos en cables
-// pines correspondientes a las columnas
-//uint8_t rowPins[ROWS] = { 19, 18, 5, 23 };  //En cables empieza de frente desde la esquina inferior izquierda
-// crea objeto con los prametros creados previamente
-//Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
 
 int DURACION;
 int DISTANCIA;
@@ -96,7 +78,7 @@ void setup() {
 void loop() {
   funcion_contador();
   delay(200);  // demora entre datos
-  if (statusContar() == "1" && bandera_contador == 0 ) {
+  if (statusContar() == "1" && bandera_contador == 0) {
     contador = 0;
     digitalWrite(TRIG, LOW);
     bultos_contar = 0;
@@ -166,8 +148,7 @@ void funcion_contador() {
     contador = 0;
     //bultos_contar = 0;
     digitalWrite(TRIG, LOW);
-     ESP.restart();
-    
+    ESP.restart();
   }
 
   if (DISTANCIA > 30 && bandera == 1) {
@@ -215,7 +196,6 @@ void postValueBultos(int valueB) {      //Funcion para insertar el numero de bul
   }
 }
 
-
 void postStatusBultos(int valueB) {     //Funcion para insertar el numero de bultos contando
   if (WiFi.status() == WL_CONNECTED) {  //Verificamos la conexion wifi
 
@@ -253,7 +233,6 @@ void postStatusBultos(int valueB) {     //Funcion para insertar el numero de bul
     Serial.println("Error en la conexión WIFI");
   }
 }
-
 
 String getValueLastBultos() {  //Funcion para obtener el numero de bultos a contar
 
